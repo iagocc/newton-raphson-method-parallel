@@ -17,7 +17,7 @@ NewtonRaphson::NewtonRaphson(Equation *function, Equation *phi, double epsilon1,
 	this->epsilon1 = epsilon1;
 	this->epsilon2 = epsilon2;
 	this->x0 = x0;
-	currentX = x0;
+	this->currentX = x0;
 }
 
 double NewtonRaphson::run() {

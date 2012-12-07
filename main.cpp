@@ -10,14 +10,14 @@
 #include "Equation.h"
 #include "HeightEquation.h"
 #include "Phi.h"
+#include "ModifiedPhi.h"
 #include "NewtonRaphson.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[])
 {
-	HeightEquation *eq = new HeightEquation();
-	Phi *phi = new Phi();
+	
 	double epsilon1 = 0.0;
 	double epsilon2 = 0.0;
 	double x0 = 0.0;
@@ -37,9 +37,17 @@ int main(int argc, const char * argv[])
 	scanf("%lf", &x0);
 	cout << endl;
 	
-	NewtonRaphson *nr = new NewtonRaphson(eq, phi, epsilon1, epsilon2, x0);
+	HeightEquation *eq = new HeightEquation();
+	Phi *phi = new Phi();
+	ModifiedPhi *modifiedPhi = new ModifiedPhi(x0);
 	
-	cout << "Result: " << endl << nr->run() << endl;
+	cout << "Traditional Method ";
+	NewtonRaphson *nr = new NewtonRaphson(eq, phi, epsilon1, epsilon2, x0);
+	cout << "Result: " << endl << nr->run() << endl << endl;
+	
+	cout << "Modified Method ";
+	NewtonRaphson *nrModified = new NewtonRaphson(eq, modifiedPhi, epsilon1, epsilon2, x0);
+	cout << "Result: " << endl << nrModified->run() << endl;
 	
 	return 0;
 }

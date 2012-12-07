@@ -10,5 +10,5 @@
 #include <math.h>
 
 double HeightEquation::function(double x) {
-	return ( pow(x, 3) - (9*x) + (3) );
+	return ( pow(x, 3) - 9*pow(x,2) + (90/M_PI) );
 }

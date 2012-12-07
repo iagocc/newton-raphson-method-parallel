@@ -10,5 +10,5 @@
 #include <math.h>
 
 double DerivatedHeightEquation::function(double x) {
-	return ( 3*pow(x,2) - 9 );
+	return ( 3*pow(x, 2) - 18*x );
 }
