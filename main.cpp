@@ -7,12 +7,40 @@
 //
 
 #include <iostream>
+#include "Equation.h"
+#include "HeightEquation.h"
+#include "Phi.h"
+#include "NewtonRaphson.h"
+
+using namespace std;
 
 int main(int argc, const char * argv[])
 {
-
-	// insert code here...
-	std::cout << "Hello, World!\n";
-    return 0;
+	HeightEquation *eq = new HeightEquation();
+	Phi *phi = new Phi();
+	double epsilon1 = 0.0;
+	double epsilon2 = 0.0;
+	double x0 = 0.0;
+	
+	cout << "Enter with Epsilon 1:" << endl;
+	cout << "# ";
+	scanf("%lf", &epsilon1);
+	cout << endl;
+	
+	cout << "Enter with Epsilon 2:" << endl;
+	cout << "# ";
+	scanf("%lf", &epsilon2);
+	cout << endl;
+	
+	cout << "Enter with initial h:" << endl;
+	cout << "# ";
+	scanf("%lf", &x0);
+	cout << endl;
+	
+	NewtonRaphson *nr = new NewtonRaphson(eq, phi, epsilon1, epsilon2, x0);
+	
+	cout << "Result: " << endl << nr->run() << endl;
+	
+	return 0;
 }
 
