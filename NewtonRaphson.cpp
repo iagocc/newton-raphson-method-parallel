@@ -22,7 +22,7 @@ NewtonRaphson::NewtonRaphson(Equation *function, Equation *phi, double epsilon1,
 
 double NewtonRaphson::run() {
 
-	int counter = 0;
+	counter = 0;
 	cout << "  x" << counter << " = " << currentX << endl;
 
 	while((abs(this->phi->function(this->currentX)) > this->epsilon1) &&
@@ -40,4 +40,8 @@ double NewtonRaphson::run() {
 
 	}
 	return currentX;
+}
+
+int NewtonRaphson::numberOfIterations() {
+	return counter;
 }

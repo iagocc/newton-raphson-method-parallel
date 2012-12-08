@@ -22,9 +22,11 @@ private:
 	double epsilon2;
 	double x0;
 	double currentX;
+	int counter;
 public:
 	NewtonRaphson(Equation *function, Equation *phi, double e1, double e2, double x0);
 	double run();
+	int numberOfIterations();
 };
 
 #endif /* defined(__Newton_Raphson__NewtonRaphson__) */

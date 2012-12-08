@@ -43,11 +43,21 @@ int main(int argc, const char * argv[])
 	
 	cout << "Traditional Method ";
 	NewtonRaphson *nr = new NewtonRaphson(eq, phi, epsilon1, epsilon2, x0);
-	cout << "Result: " << endl << nr->run() << endl << endl;
+	double nrResult = nr->run();
+	cout << "Result: " << endl << nrResult << endl << endl;
 	
 	cout << "Modified Method ";
 	NewtonRaphson *nrModified = new NewtonRaphson(eq, modifiedPhi, epsilon1, epsilon2, x0);
-	cout << "Result: " << endl << nrModified->run() << endl;
+	double nrResultModifies = nrModified->run();
+	cout << "Result: " << endl << nrResultModifies << endl << endl;
+	
+	cout << "Result:" << endl
+		 << " Traditional: " << nrResult << endl
+		 << " Modified: " << nrResultModifies << endl
+		 << " Traditional - Modified = " << (nrResult - nrResultModifies) << endl;
+	cout << "Number of iterations:" << endl
+		 << " Traditional: " << nr->numberOfIterations() << endl
+		 << " Modified: " << nrModified->numberOfIterations() << endl;
 	
 	return 0;
 }
