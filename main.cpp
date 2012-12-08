@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <cstdio>
 #include "Equation.h"
 #include "HeightEquation.h"
 #include "Phi.h"
