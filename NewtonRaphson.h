@@ -12,7 +12,7 @@
 #include <iostream>
 #include "Equation.h"
 
-#define MAX_ITERATIONS 10000
+#define MAX_ITERATIONS 100000
 
 class NewtonRaphson {
 private:

@@ -23,6 +23,8 @@ int main(int argc, const char * argv[])
 	double epsilon2 = 0.0;
 	double x0 = 0.0;
 	
+	cout.precision(10);
+	
 	cout << "Enter with Epsilon 1:" << endl;
 	cout << "# ";
 	scanf("%lf", &epsilon1);
@@ -42,17 +44,17 @@ int main(int argc, const char * argv[])
 	Phi *phi = new Phi();
 	ModifiedPhi *modifiedPhi = new ModifiedPhi(x0);
 	
-	cout << "Traditional Method ";
+	cout << "Traditional Method " << endl;
 	NewtonRaphson *nr = new NewtonRaphson(eq, phi, epsilon1, epsilon2, x0);
 	double nrResult = nr->run();
 	cout << "Result: " << endl << nrResult << endl << endl;
 	
-	cout << "Modified Method ";
+	cout << "Modified Method " << endl;
 	NewtonRaphson *nrModified = new NewtonRaphson(eq, modifiedPhi, epsilon1, epsilon2, x0);
 	double nrResultModifies = nrModified->run();
 	cout << "Result: " << endl << nrResultModifies << endl << endl;
 	
-	cout << "Result:" << endl
+	cout << "Comparative Table:" << endl
 		 << " Traditional: " << nrResult << endl
 		 << " Modified: " << nrResultModifies << endl
 		 << " Traditional - Modified = " << (nrResult - nrResultModifies) << endl;
