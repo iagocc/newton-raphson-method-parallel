@@ -18,28 +18,38 @@ NewtonRaphson::NewtonRaphson(Equation *function, Equation *phi, double epsilon1,
 	this->epsilon2 = epsilon2;
 	this->x0 = x0;
 	this->currentX = x0;
+	this->counter = 0;
 }
 
-double NewtonRaphson::run() {
+double NewtonRaphson::actual() {
+	return currentX;
+}
 
-	counter = 0;
-	cout << "  x" << counter << " = " << currentX << endl;
+double NewtonRaphson::next() {
+	if(hasNext()) {
 
-	while((abs(this->function->function(this->currentX)) > this->epsilon1) &&
-		  (abs(this->function->function(this->currentX) - currentX ) > this->epsilon2)) {
+		this->currentX = this->phi->function(this->currentX);
+		counter++;
 
+	} else {
+		cout << "###ERROR####################"<< endl;
+	}
+	
+	return currentX;
+}
+
+bool NewtonRaphson::hasNext() {
+	if((abs(this->function->function(this->currentX)) > this->epsilon1) &&
+	   (abs(this->function->function(this->currentX) - currentX ) > this->epsilon2)) {
+		
 		if(counter == MAX_ITERATIONS) {
 			cout << "Number of iterations overstepped the limit." << endl;
-			return currentX;
+			return false;
 		}
-
-		currentX = this->phi->function(this->currentX);
-		counter++;
 		
-		cout << "  x" << counter << " = " << currentX << endl;
-
+		return true;
 	}
-	return currentX;
+	return false;
 }
 
 int NewtonRaphson::numberOfIterations() {

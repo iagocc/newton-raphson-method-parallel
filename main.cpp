@@ -22,6 +22,8 @@ int main(int argc, const char * argv[])
 	double epsilon1 = 0.0;
 	double epsilon2 = 0.0;
 	double x0 = 0.0;
+	double n1, n2;
+	int i;
 	
 	cout.precision(10);
 	
@@ -44,23 +46,37 @@ int main(int argc, const char * argv[])
 	Phi *phi = new Phi();
 	ModifiedPhi *modifiedPhi = new ModifiedPhi(x0);
 	
-	cout << "Traditional Method " << endl;
 	NewtonRaphson *nr = new NewtonRaphson(eq, phi, epsilon1, epsilon2, x0);
-	double nrResult = nr->run();
-	cout << "Result: " << endl << nrResult << endl << endl;
-	
-	cout << "Modified Method " << endl;
 	NewtonRaphson *nrModified = new NewtonRaphson(eq, modifiedPhi, epsilon1, epsilon2, x0);
-	double nrResultModifies = nrModified->run();
-	cout << "Result: " << endl << nrResultModifies << endl << endl;
 	
-	cout << "Comparative Table:" << endl
-		 << " Traditional: " << nrResult << endl
-		 << " Modified: " << nrResultModifies << endl
-		 << " Traditional - Modified = " << (nrResult - nrResultModifies) << endl;
-	cout << "Number of iterations:" << endl
-		 << " Traditional: " << nr->numberOfIterations() << endl
-		 << " Modified: " << nrModified->numberOfIterations() << endl;
+	cout << "Iteration \tTraditional Method \tModified Method \tTM - MM" << endl;
+	while(nr->hasNext() || nrModified->hasNext()) {
+		
+		if(nr->numberOfIterations() > nrModified->numberOfIterations()) {
+			i = nr->numberOfIterations();
+		} else {
+			i = nrModified->numberOfIterations();
+		}
+		
+		cout << i << "\t\t";
+		
+		if(nr->hasNext()) {
+			cout << (n1 = nr->next()) << "\t\t";
+		} else {
+			cout << "# " << (n1 =nr->actual()) << " \t\t";
+		}
+		
+		if(nrModified->hasNext()) {
+			cout << (n2 = nrModified->next()) << "\t\t";
+		} else {
+			cout << "#" << (n2 = nrModified->actual()) << "\t\t";
+		}
+		
+		cout << n1 - n2 << endl;
+	}
+	
+	cout << "Traditional Method Result: " << n1 << " After " << nr->numberOfIterations() << " iterations." << endl;
+	cout << "Modified Method Result: " << n2 << " After " << nrModified->numberOfIterations() << " iterations." << endl;
 	
 	return 0;
 }

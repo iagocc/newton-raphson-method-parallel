@@ -25,8 +25,10 @@ private:
 	int counter;
 public:
 	NewtonRaphson(Equation *function, Equation *phi, double e1, double e2, double x0);
-	double run();
+	double actual();
+	double next();
 	int numberOfIterations();
+	bool hasNext();
 };
 
 #endif /* defined(__Newton_Raphson__NewtonRaphson__) */
