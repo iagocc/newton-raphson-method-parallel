@@ -25,8 +25,8 @@ double NewtonRaphson::run() {
 	counter = 0;
 	cout << "  x" << counter << " = " << currentX << endl;
 
-	while((abs(this->phi->function(this->currentX)) > this->epsilon1) &&
-		  (abs(this->phi->function(this->currentX) - currentX ) > this->epsilon2)) {
+	while((abs(this->function->function(this->currentX)) > this->epsilon1) &&
+		  (abs(this->function->function(this->currentX) - currentX ) > this->epsilon2)) {
 
 		if(counter == MAX_ITERATIONS) {
 			cout << "Number of iterations overstepped the limit." << endl;
