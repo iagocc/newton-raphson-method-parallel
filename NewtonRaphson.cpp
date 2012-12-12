@@ -31,8 +31,6 @@ double NewtonRaphson::next() {
 		this->currentX = this->phi->function(this->currentX);
 		counter++;
 
-	} else {
-		cout << "###ERROR####################"<< endl;
 	}
 	
 	return currentX;
